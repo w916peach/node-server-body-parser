@@ -1,0 +1,26 @@
+{
+  "name": "server-body-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w916peach/node-server-body-parser.git"
+  },
+  "keywords": [
+    "node",
+    "parser",
+    "body",
+    "server",
+    "serve"
+  ],
+  "author": "w916peach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/w916peach/node-server-body-parser/issues"
+  },
+  "homepage": "https://github.com/w916peach/node-server-body-parser#readme"
+}
