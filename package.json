@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/w916peach/node-server-body-parser/issues"
   },
-  "homepage": "https://github.com/w916peach/node-server-body-parser#readme"
+  "homepage": "https://github.com/w916peach/node-server-body-parser#readme",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "koa": "^2.13.0"
+  }
 }

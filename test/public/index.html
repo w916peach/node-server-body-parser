@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .outer {
+            position: absolute;
+            width: 104px;
+            height: 52px;
+            left: -2px;
+            top: -2px;
+            overflow: hidden;
+        }
+
+        .inner {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid red;
+            border-radius: 50%;
+            border-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="box">
+        <div class="outer">
+            <div class="inner"></div>
+        </div>
+
+    </div> -->
+    <input type="file" id="file" multiple />
+    <button id="postTest">postTest</button>
+    <script>
+        async function request(url, options) {
+            let globalResolve = null;
+            const { method = 'GET', data = null, query = {}, headers = {} } = options;
+            const oAjax = new XMLHttpRequest();
+            oAjax.open(method, url, true);
+            Object.keys(headers).forEach(item => oAjax.setRequestHeader(item, headers[item]));
+            oAjax.send(data);
+            oAjax.onreadystatechange = () => globalResolve(oAjax);
+            return new Promise(resolvoe => {
+                globalResolve = resolvoe;
+            });
+        }
+
+        const postTest = document.getElementById('postTest');
+        const file = document.getElementById('file');
+        file.addEventListener('change', (ev) => {
+            console.log(ev);
+        }, false);
+        postTest.addEventListener('click', () => {
+            for (let i = 0; i < file.files.length; i += 1) {
+                let singleFile = file.files.item(i);
+                request('/express/postTest', {
+                    data: singleFile,
+                    method: 'POST',
+                    headers: {
+                        // 'content-type': 'text/plain'
+                    }
+                }).then(data => {
+                    console.log(data);
+                });
+            }
+        }, false);
+
+    </script>
+</body>
+
+</html>
