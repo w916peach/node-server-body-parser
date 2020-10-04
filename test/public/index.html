@@ -63,18 +63,21 @@
             console.log(ev);
         }, false);
         postTest.addEventListener('click', () => {
+            let formData = new FormData();
             for (let i = 0; i < file.files.length; i += 1) {
                 let singleFile = file.files.item(i);
-                request('/express/postTest', {
-                    data: singleFile,
-                    method: 'POST',
-                    headers: {
-                        // 'content-type': 'text/plain'
-                    }
-                }).then(data => {
-                    console.log(data);
-                });
+                formData.append('file' + i, singleFile);
             }
+            formData.append('msg', 'files');
+            request('http://localhost:3002/koa/posttest?a=2334', {
+                data: file.files.item(0),
+                method: 'POST',
+                headers: {
+                    // 'content-type': 'text/plain'
+                }
+            }).then(data => {
+                console.log(data);
+            });
         }, false);
 
     </script>

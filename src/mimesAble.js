@@ -1,5 +1,6 @@
 // 根据请求头中不同的content-type值进行不同的处理
-
+const fs = require('fs')
+const resolveFormData = require('./utils/resolveFormData')
 const mimesAble = {
     // 普通的文本数据
     'text/plain'(req, bodyBuf) {
@@ -37,12 +38,16 @@ const mimesAble = {
         }
     },
     // form-data格式的数据
-    'multipart/form-data'(bodyBuf) {
-
+    'multipart/form-data'(req, bodyBuf) {
+        resolveFormData(req, bodyBuf);
     },
     // 处理单个文件（以二进制的方式）
-    'application/single-file'(bodyBuf) {
-
+    'application/single-file'(req, bodyBuf) {
+        req.body = {
+            contentType: req.headers['content-type'],
+            buf: bodyBuf
+        };
+        req.bodyBuf = bodyBuf;
     }
 }
 
