@@ -15,7 +15,10 @@
     "parser",
     "body",
     "server",
-    "serve"
+    "serve",
+    "koa",
+    "body-parser",
+    "http"
   ],
   "author": "w916peach",
   "license": "ISC",
