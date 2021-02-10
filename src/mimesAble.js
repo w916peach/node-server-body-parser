@@ -13,6 +13,11 @@ const mimesAble = {
     },
     // json格式的数据
     'application/json'(req, bodyBuf) {
+        if (bodyBuf.length === 0) {
+            req.body = {};
+            req.bodyBuf = bodyBuf;
+            return;
+        }
         try {
             req.body = JSON.parse(bodyBuf.toString());
             req.bodyBuf = bodyBuf;
@@ -23,6 +28,11 @@ const mimesAble = {
     },
     // key-value格式的数据
     'application/x-www-form-urlencoded'(req, bodyBuf) {
+        if (bodyBuf.length === 0) {
+            req.body = {};
+            req.bodyBuf = bodyBuf;
+            return;
+        }
         try {
             const text = bodyBuf.toString();
             let obj = {};
@@ -39,6 +49,11 @@ const mimesAble = {
     },
     // form-data格式的数据
     'multipart/form-data'(req, bodyBuf) {
+        if (bodyBuf.length === 0) {
+            req.body = {};
+            req.bodyBuf = bodyBuf;
+            return;
+        }
         resolveFormData(req, bodyBuf);
     },
     // 处理单个文件（以二进制的方式）
